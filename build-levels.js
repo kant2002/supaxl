@@ -37,7 +37,7 @@ module.exports = function parse(data) {
 
     data = levelsParser.parse(data);
 
-    fs.writeFile("build/levels.json",
+    fs.writeFile("public/build/levels.json",
                  JSON.stringify(data), (err) => {
                    if (err) {
                      throw(err);

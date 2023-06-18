@@ -7,10 +7,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: ['./src/index.js'],
   devServer: {
-    hot: true,
-    inline: true,
     host: '0.0.0.0',
-    disableHostCheck: true
+    allowedHosts: "all"
   },
   performance: {
     hints: false
@@ -20,6 +18,13 @@ module.exports = {
   },
   target: 'web',
   devtool: 'source-map',
+  resolve: {
+    fallback: { 
+      'path': require.resolve('path-browserify'),
+      "url": require.resolve("url/"),
+    },
+    extensions: ['.jsx', '.js', '.tsx', '.ts'],
+  },
   module: {
     rules: [
       {
@@ -41,6 +46,7 @@ module.exports = {
       }
     ]
   },
+  
   plugins: [
     new HtmlWebpackPlugin({
       inject: 'head',
